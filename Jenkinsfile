@@ -1,32 +1,22 @@
-pipeline{
-    agent any
-    stages{
-        stage("A"){
-            steps{
-                echo "========executing A========"
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
+pipeline {
+    agent {
+        docker {
+            image 'node:11.10.0-alpine' 
+            args '-p 3000:3000' 
         }
     }
-    post{
-        always{
-            echo "========always========"
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm --version'
+                sh 'npm install' 
+            }
         }
-        success{
-            echo "========pipeline executed successfully ========"
+        stage('test') {
+            steps {
+                echo 'testing ...' 
+            }
         }
-        failure{
-            echo "========pipeline execution failed========"
-        }
+
     }
 }
