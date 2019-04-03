@@ -19,7 +19,7 @@ pipeline {
         stage('Test') {
             steps {
             echo 'Test the code'
-            sh '.jenkins/scripts/test.sh'
+            sh './jenkins/scripts/test.sh'
             }
         }
         stage('Build') {
