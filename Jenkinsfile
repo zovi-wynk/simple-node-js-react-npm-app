@@ -1,7 +1,9 @@
 pipeline {
     agent { 
-         dockerfile true 
-         
+         dockerfile {
+                label 'my-defined-label'
+                additionalBuildArgs  '--build-arg version=1.0.2'
+            }
         }
     environment {
         CI = 'true'
