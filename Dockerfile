@@ -1,6 +1,17 @@
     ## Stage 1 :  Build container based on Node.js, to build and compile Angular
 FROM node:11.10.0-alpine as buildContainer
 
+
+RUN apt-get update && apt-get install -y \
+    python-dev \
+    zip \
+    jq
+
+RUN curl -O https://bootstrap.pypa.io/get-pip.py
+
+RUN python get-pip.py
+RUN pip install awscli
+
 ## Choose the directory, in which we will place our code
 WORKDIR /app
 
@@ -31,3 +42,5 @@ WORKDIR /app
 COPY --from=buildContainer /app/build /app/dist
 
 EXPOSE 4000
+
+CMD ["node"]

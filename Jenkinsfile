@@ -8,11 +8,6 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('checkout') {
-            steps {
-                sh 'checkout scm'
-            }
-        }
         stage('Deliver') {
             steps {
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
