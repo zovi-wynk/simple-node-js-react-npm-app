@@ -1,15 +1,18 @@
 pipeline {
     agent { 
-        docker 
-        { 
-            image 'node:6.3' 
-            } 
+         dockerfile true 
         }
     environment {
         CI = 'true'
     }
     stages {
         stage('stage') {
+            steps {
+                echo 'stage the changes'
+                sh 'docker build -t my-app .'
+            }
+        }
+        /*stage('stage') {
             steps {
                 echo 'stage the changes'
                 sh 'npm --version'
@@ -33,6 +36,6 @@ pipeline {
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                  sh './jenkins/scripts/kill.sh'
             }
-        }
+        }*/
     }
 }

@@ -9,7 +9,7 @@ COPY package*.json /app/
 
 ## install artifacts & dependecies, which will generate node_modules folder
 ## npm ci command is similar to npm-install, except it’s meant to be used in automated environments such as test platforms, continuous integration, and deployment
-RUN npm ci
+RUN npm install
 
 COPY ./ /app/
 
@@ -28,6 +28,6 @@ WORKDIR /app
 #COPY --from=buildContainer /app/server.js /app
 
 # Get all the code needed to run the app
-COPY --from=buildContainer /app/dist /app/dist
+COPY --from=buildContainer /app/build /app/dist
 
 EXPOSE 4000
