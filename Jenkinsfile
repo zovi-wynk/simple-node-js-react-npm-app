@@ -1,7 +1,6 @@
 pipeline {
     agent { 
          dockerfile {
-                label 'my-defined-label'
                 additionalBuildArgs  '--build-arg version=1.0.2'
             }
         }
